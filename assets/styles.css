@@ -48,6 +48,9 @@
   --mono: "DM Mono", ui-monospace, monospace;
   --max: 1180px;
   --gutter: clamp(20px, 4vw, 48px);
+  --consent-bg: #143d2b;
+  --consent-fg: #edf2e9;
+  --consent-accent: #d9f24a;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
