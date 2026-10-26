@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Good Dog Name — social card</title>
+<style>
+  @font-face { font-family: "Gabarito"; src: url("./assets/fonts/gabarito-latin.woff2") format("woff2"); font-weight: 400 900; font-display: block; }
+  @font-face { font-family: "Figtree"; src: url("./assets/fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; font-display: block; }
+  @font-face { font-family: "DM Mono"; src: url("./assets/fonts/dm-mono-400.woff2") format("woff2"); font-weight: 400; font-display: block; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { background: #143d2b; font-family: "Figtree", Arial, sans-serif; color: #edf2e9; }
+  .card { position: relative; display: grid; grid-template-columns: 650px 1fr; width: 1200px; height: 630px; padding: 54px 56px 40px; gap: 30px; overflow: hidden; }
+  .dots { position: absolute; top: 0; right: 0; width: 300px; height: 200px; background-image: radial-gradient(circle, rgba(217,242,74,.25) 1.3px, transparent 1.5px); background-size: 14px 14px; }
+  .copy { position: relative; z-index: 1; display: flex; flex-direction: column; }
+  .brand { display: flex; align-items: center; gap: 12px; font-family: "Gabarito", Arial, sans-serif; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; }
+  .mark { width: 34px; height: 34px; }
+  h1 { margin: 52px 0 0; font-family: "Gabarito", Arial, sans-serif; font-size: 68px; font-weight: 800; line-height: .93; letter-spacing: -.035em; max-width: 560px; }
+  h1 em { font-style: normal; color: #ff6b5a; }
+  p { max-width: 440px; margin: 20px 0 0; color: #dfe9da; font-size: 19px; line-height: 1.45; }
+  .foot { margin-top: auto; display: flex; align-items: center; gap: 12px; font-family: "DM Mono", monospace; font-size: 12px; color: #d9f24a; text-transform: uppercase; letter-spacing: .04em; }
+  .foot span { width: 28px; height: 3px; background: #d9f24a; }
+  .stage { position: relative; z-index: 1; display: grid; place-items: center; }
+  .tag { position: relative; width: 410px; background: #fffdf6; color: #121512; border: 3px solid #121512; border-radius: 60px 60px 16px 16px; padding: 34px 22px 18px; transform: rotate(2deg); }
+  .tag::before { content: ""; position: absolute; top: 14px; left: 50%; width: 16px; height: 16px; transform: translateX(-50%); border: 2px solid #121512; border-radius: 50%; background: #edf2e9; }
+  .tag::after { content: ""; position: absolute; top: -22px; left: 50%; width: 25px; height: 25px; transform: translateX(-50%); border: 3px solid #b9bdb5; border-radius: 50%; }
+  .tag__head { display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 1.5px dashed rgba(18,21,18,.35); font-family: "DM Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: #445149; }
+  .tag__head strong { color: #143d2b; }
+  .name { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 14px 0 4px; border-bottom: 1px dashed rgba(18,21,18,.28); }
+  .name strong { font-family: "Gabarito", Arial, sans-serif; font-size: 28px; font-weight: 800; line-height: 1; }
+  .name span { font-family: "DM Mono", monospace; font-size: 9px; text-transform: uppercase; color: #647169; }
+  .name small { display: block; margin-top: 4px; font-family: "Figtree", Arial, sans-serif; font-size: 12px; color: #445149; }
+  .name em { font-style: normal; color: #7651a6; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="dots"></div>
+  <div class="copy">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="7" width="20" height="23" rx="7" fill="#d9f24a"/><circle cx="16" cy="12" r="2.5" fill="#143d2b"/><path d="M10 18h12M10 22h8" stroke="#143d2b" stroke-width="2"/></svg>
+      Good Dog Name
+    </div>
+    <h1>A name they'll <em>actually come to.</em></h1>
+    <p>24 dog names by gender and vibe from a hand-built list. Star the good ones, copy the shortlist.</p>
+    <div class="foot"><span></span>gooddogname.com · free · no signup</div>
+  </div>
+  <div class="stage">
+    <div class="tag">
+      <div class="tag__head"><strong>Name finder / No. 01</strong><span>24 names</span></div>
+      <div class="name"><div><strong>Mochi</strong><small>sweet rice cake</small></div><span>cute</span></div>
+      <div class="name"><div><strong>Luna</strong><small>moon</small></div><span>unique</span></div>
+      <div class="name"><div><strong>Waffles</strong><small>a breakfast favorite</small></div><span>funny</span></div>
+      <div class="name"><div><strong>Atlas</strong><small>enduring</small></div><span>strong</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
