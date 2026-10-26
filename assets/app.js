@@ -86,6 +86,10 @@ function selectedValue(name, fallback) {
   return form?.querySelector(`input[name="${name}"]:checked`)?.value || fallback;
 }
 
+function track(name, params) {
+  if (typeof window.trackEvent === "function") window.trackEvent(name, params);
+}
+
 function updateShortlist() {
   if (!shortlistChips || !shortlistCount) return;
   const names = [...state.favorites];
@@ -138,6 +142,7 @@ function toggleFavorite(name) {
   updateShortlist();
   syncCardStars();
   showToast(state.favorites.has(name) ? `${name} saved to shortlist.` : `${name} removed from shortlist.`);
+  track("dog_name_favorited", { saved: state.favorites.has(name), favorites: state.favorites.size });
 }
 
 function makeStyleChip(style) {
@@ -196,6 +201,7 @@ function makeCard(dog, index) {
       copy.innerHTML = ICON_COPY;
     }, 1100);
     showToast(`${dog.name} copied.`);
+    track("dog_name_copied", { source: "card" });
   });
   actions.append(copy);
 
@@ -228,12 +234,13 @@ function renderResults(results, { scroll = true } = {}) {
   }
 }
 
-function runGenerator({ scroll = true } = {}) {
+function runGenerator({ scroll = true, trigger = "form" } = {}) {
   const gender = selectedValue("gender", "any");
   const style = selectedValue("style", "cute");
   state.seed = (state.seed + 0x9e3779b9) >>> 0;
   const results = generateNames({ gender, style, count: 24 }, state.seed);
   renderResults(results, { scroll });
+  track("dog_names_generated", { gender, style, names: results.length, trigger });
 }
 
 form?.addEventListener("submit", (event) => {
@@ -249,7 +256,7 @@ form?.addEventListener("submit", (event) => {
 });
 
 newNamesButton?.addEventListener("click", () => {
-  runGenerator({ scroll: false });
+  runGenerator({ scroll: false, trigger: "new" });
   showToast("New names pulled.");
 });
 
@@ -257,6 +264,7 @@ copyAllButton?.addEventListener("click", async () => {
   if (!state.results.length) return;
   const ok = await copyText(state.results.map((dog) => dog.name).join(", "));
   showToast(ok ? `All ${state.results.length} names copied.` : "Couldn’t copy — try selecting the names.");
+  if (ok) track("dog_names_copied_all", { count: state.results.length });
 });
 
 shortlistCopy?.addEventListener("click", async () => {
@@ -264,6 +272,7 @@ shortlistCopy?.addEventListener("click", async () => {
   if (!names.length) return;
   const ok = await copyText(names.join(", "));
   showToast(ok ? `Shortlist copied: ${names.length} name${names.length === 1 ? "" : "s"}.` : "Couldn’t copy — try selecting the names.");
+  if (ok) track("dog_shortlist_copied", { count: names.length });
 });
 
 fillExample?.addEventListener("click", () => {
@@ -271,7 +280,7 @@ fillExample?.addEventListener("click", () => {
   const cute = form?.querySelector('input[name="style"][value="cute"]');
   if (girl) girl.checked = true;
   if (cute) cute.checked = true;
-  runGenerator();
+  runGenerator({ trigger: "example" });
 });
 
 state.favorites = loadFavorites();
